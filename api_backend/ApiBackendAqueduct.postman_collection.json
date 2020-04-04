@@ -1,0 +1,226 @@
+{
+	"id": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+	"name": "ApiBackendAqueduct",
+	"description": "",
+	"order": [
+		"1d8d90af-9ffe-7c74-7892-09c74b9f26db",
+		"1d7471d9-39fa-915f-4f74-7f5e5fb13697",
+		"ee6c3c3c-2320-656b-d3a5-9d7e56d8ad26",
+		"c0546486-edd6-e730-a28f-44870e82c66c",
+		"a78ae767-9fb0-6d14-ff07-034064b6adc0",
+		"ab2628f4-aec6-3e87-b54f-6889f3a3ab32"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1585954129091,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "1d7471d9-39fa-915f-4f74-7f5e5fb13697",
+			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/categorias/despesa",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585957735564,
+			"name": "http://localhost:8888/ categorias",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"rawModeData": "{\n\t\"login\":\"Marcos G\",\n\t\"senha\":\"99510796\"\n}"
+		},
+		{
+			"id": "1d8d90af-9ffe-7c74-7892-09c74b9f26db",
+			"headers": "Content-Type: application/json\n//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODYwNDEyMzQsImlhdCI6MTU4NTk1NDgzNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsInN1YiI6IjUifQ.NxWBz6MlKdFFuLoikJBOnDK6EG1O1IudVdl2nWg8CGI\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODYwNDEyMzQsImlhdCI6MTU4NTk1NDgzNCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdCIsInN1YiI6IjUifQ.NxWBz6MlKdFFuLoikJBOnDK6EG1O1IudVdl2nWg8CGI",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "{{url}}/login",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585957728723,
+			"name": "http://localhost:8888/login",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"rawModeData": "{\n\t\"login\":\"Marcos\",\n\t\"senha\":\"99510796\"\n}"
+		},
+		{
+			"id": "a78ae767-9fb0-6d14-ff07-034064b6adc0",
+			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/movimentacoes",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585957857669,
+			"name": "http://localhost:8888/ movimentação salvar",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"rawModeData": "{\n\t\"categoria\":1,\n\t\"dataMovimentacao\":\"2020-03-31T00:00:00z\",\n\t\"descricao\":\"Pagamento\",\n\t\"valor\":200.10\n}"
+		},
+		{
+			"id": "ab2628f4-aec6-3e87-b54f-6889f3a3ab32",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/usuario",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585957712508,
+			"name": "http://localhost:8888/usuario cadastrar",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"rawModeData": "{\n\t\"login\":\"Marcos\",\n\t\"senha\":\"99510796\"\n}"
+		},
+		{
+			"id": "c0546486-edd6-e730-a28f-44870e82c66c",
+			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/movimentacoes/total/202004",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585958377835,
+			"name": "http://localhost:8888/ movimentações",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "ee6c3c3c-2320-656b-d3a5-9d7e56d8ad26",
+			"rawModeData": "{\n\t\"login\":\"Marcos G\",\n\t\"senha\":\"99510796\"\n}"
+		},
+		{
+			"id": "ee6c3c3c-2320-656b-d3a5-9d7e56d8ad26",
+			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/movimentacoes/total/202004",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1585958377835,
+			"name": "http://localhost:8888/ total",
+			"description": "Login",
+			"collectionId": "507fcc0b-d1f3-c506-d130-30d5538652fc",
+			"responses": [],
+			"rawModeData": "{\n\t\"login\":\"Marcos G\",\n\t\"senha\":\"99510796\"\n}"
+		}
+	]
+}
