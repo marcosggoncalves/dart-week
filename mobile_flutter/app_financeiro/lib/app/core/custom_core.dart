@@ -30,6 +30,8 @@ class CustomDio{
   _onRequest(RequestOptions options) async{
     var token = await UsuarioRepository().getToken();
     options.headers['Authorization'] = token;
+
+    print(options.data);
   }
 
   _onResponse(Response e) {
@@ -41,6 +43,8 @@ class CustomDio{
       UsuarioRepository().logout();
       Get.offAllNamed('/');
     }
+
+    print(e);
 
     return e;
   }

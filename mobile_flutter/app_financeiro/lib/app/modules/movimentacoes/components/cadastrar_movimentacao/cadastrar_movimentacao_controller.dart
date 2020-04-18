@@ -93,7 +93,7 @@ abstract class _CadastrarMovimentacaoControllerBase with Store {
               categoria.id,
               dataInclusao,
               descricao,
-              valor,
+              moneyController.numberValue,
             ),
           );
           await _salvarMovimentacaoFuture;
@@ -112,6 +112,7 @@ abstract class _CadastrarMovimentacaoControllerBase with Store {
   resetForm() {
     changeCategoria(null);
     changeDescricao('');
+    moneyController.text = '';
     categoriaValid = true;
   }
 }

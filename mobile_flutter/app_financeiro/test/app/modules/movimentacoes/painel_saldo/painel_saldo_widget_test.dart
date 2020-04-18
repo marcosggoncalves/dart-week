@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 
-import 'package:app_financeiro/app/modules/movimentacoes/painel_saldo/painel_saldo_widget.dart';
 
 main() {
 //  testWidgets('PainelSaldoWidget has message', (WidgetTester tester) async {

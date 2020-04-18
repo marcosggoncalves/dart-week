@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ControlejatextFormField extends TextFormField{
   ControlejatextFormField({
-    ValueChanged<String> onChange,
+    ValueChanged<String> onChanged,
     FormFieldValidator<String> validator,
     @required String label,
     bool obscureText,
@@ -10,11 +10,10 @@ class ControlejatextFormField extends TextFormField{
     double fontSize,
     EdgeInsets padding,
     TextEditingController controller,
-    IconData icon, 
-    void Function(String descricao) onChanged,
+    IconData icon
   }) : super(
     controller: controller,
-    onChanged: onChange,
+    onChanged: onChanged,
     validator: validator,
     obscureText: obscureText ?? false,
     decoration: InputDecoration(

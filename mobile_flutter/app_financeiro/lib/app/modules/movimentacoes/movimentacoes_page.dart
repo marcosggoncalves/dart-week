@@ -1,9 +1,6 @@
 import 'package:app_financeiro/app/core/store_state.dart';
 import 'package:app_financeiro/app/mixins/loader.dart';
-import 'package:app_financeiro/app/modules/movimentacoes/cadastrar_movimentacao/cadastrar_movimentacao_controller.dart';
-import 'package:app_financeiro/app/modules/movimentacoes/cadastrar_movimentacao/cadastrar_movimentacao_widget.dart';
 import 'package:app_financeiro/app/modules/movimentacoes/components/movimentacao_item.dart';
-import 'package:app_financeiro/app/modules/movimentacoes/painel_saldo/painel_saldo_widget.dart';
 import 'package:app_financeiro/app/repository/usuario.dart';
 import 'package:app_financeiro/app/utils/size_utils.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +8,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get/get.dart';
 import 'package:mobx/mobx.dart';
+import 'components/cadastrar_movimentacao/cadastrar_movimentacao_controller.dart';
+import 'components/cadastrar_movimentacao/cadastrar_movimentacao_widget.dart';
+import 'components/painel_saldo/painel_saldo_widget.dart';
 import 'movimentacoes_controller.dart';
 
 class MovimentacoesPage extends StatefulWidget {
@@ -63,7 +63,9 @@ class _MovimentacoesPageState
           }
         })
     ];  
+    
     controller.buscarMovimentacoes();
+    // hideLoader();
   }
 
   @override
@@ -83,7 +85,6 @@ class _MovimentacoesPageState
           icon: Icon(Icons.add),
           onSelected: (item){
            cadastrarController.buscarCategorias(item);
-            _showInsertModal();
           },
           itemBuilder: (_){
             return [
@@ -136,7 +137,6 @@ class _MovimentacoesPageState
                   return Container();
               }
             }),
-            _makeContent(),
             PainelSaldoWidget(
               appBarHeight: appBar.preferredSize.height,
             )
@@ -155,7 +155,10 @@ class _MovimentacoesPageState
               separatorBuilder: (_, index) => Divider(color: Colors.black38), 
               itemCount: controller.movimentacoes?.length ?? 0
             ) 
-          )
+          ),
+          SizedBox(
+          height: SizeUtils.heightScreen * 0.09,
+        )
       ] ,
     );
   }
@@ -168,14 +171,14 @@ class _MovimentacoesPageState
         title: Text('Adicionar'),
         content: CadastrarMovimentacaoWidget(),
         actions: <Widget>[
+           FlatButton(
+            onPressed: () => Get.offAllNamed('/movimentacoes'),
+            child: const Text("CANCELAR"),
+          ),
           FlatButton(
             onPressed: () => cadastrarController.salvarMovimento(),
             child: const Text("SALVAR"),
-          ),
-          FlatButton(
-            onPressed: () => Get.back(result: false),
-            child: const Text("CANCELAR"),
-          ),
+          )
         ],
       )
       );

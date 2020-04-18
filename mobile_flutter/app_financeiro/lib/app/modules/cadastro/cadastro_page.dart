@@ -110,7 +110,7 @@ class _CadastroPageState
             ControlejatextFormField(
               label:'Usuário',
               icon: Icons.people,
-              onChange: (String login) => controller.changeLogin(login),
+              onChanged: (String login) => controller.changeLogin(login),
               validator: (String login){
                 if(login.isEmpty){
                   return 'Login é obrigatório';
@@ -124,7 +124,7 @@ class _CadastroPageState
             ControlejatextFormField(
               label: 'Senha',
               icon: Icons.lock_open,
-              onChange: (String senha) => controller.changeSenha(senha),
+              onChanged: (String senha) => controller.changeSenha(senha),
               validator: (String senha){
                 if(senha.isEmpty){
                   return 'Senha é obrigatório';
@@ -136,7 +136,7 @@ class _CadastroPageState
              ControlejatextFormField(
                label: 'Confirmar senha',
                icon: Icons.lock_outline,
-               onChange: (String senha) => controller.changeConfirmSenha(senha),
+               onChanged: (String senha) => controller.changeConfirmSenha(senha),
               validator: (String senha){
                 if(senha.isNotEmpty){
                   if(senha != controller.senha){

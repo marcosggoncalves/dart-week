@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:app_financeiro/app/core/store_state.dart';
-import 'package:app_financeiro/app/modules/movimentacoes/painel_saldo/painel_saldo_controller.dart';
+import 'package:app_financeiro/app/modules/movimentacoes/components/painel_saldo/painel_saldo_controller.dart';
 import 'package:app_financeiro/app/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

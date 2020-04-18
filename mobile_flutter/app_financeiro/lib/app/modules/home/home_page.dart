@@ -17,23 +17,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
 
+   @override
+  void initState() { 
+    super.initState();
+      final future = new Future.delayed(const Duration(milliseconds: 650));
+      future.asStream()
+      .listen((res) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => controller.verificaLogado());
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
 
     ThemeUtils.init(context);
-    Future.delayed(Duration.zero, () async{
-     final status = await Modular.get<UsuarioRepository>().checkLogged();
-     final future = new Future.delayed(const Duration(milliseconds: 200));
-
-      future.asStream()
-      .listen((res) {
-          if(status){
-            Get.offAllNamed('/movimentacoes');
-          }else{
-            Get.offAllNamed('/login');
-          }
-      });
-    });
+    SizeUtils.init(context);
 
      return Scaffold(
       body: Container(

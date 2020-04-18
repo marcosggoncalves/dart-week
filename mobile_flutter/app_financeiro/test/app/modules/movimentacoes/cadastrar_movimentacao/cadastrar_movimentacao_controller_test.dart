@@ -1,7 +1,5 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:app_financeiro/app/modules/movimentacoes/cadastrar_movimentacao/cadastrar_movimentacao_controller.dart';
 import 'package:app_financeiro/app/modules/movimentacoes/movimentacoes_module.dart';
 
 void main() {

@@ -1,9 +1,10 @@
 import 'package:app_financeiro/app/core/store_state.dart';
 import 'package:app_financeiro/app/model/movimentacao.dart';
-import 'package:app_financeiro/app/modules/movimentacoes/painel_saldo/painel_saldo_controller.dart';
 import 'package:app_financeiro/app/repository/movimentacoes.dart';
 import 'package:app_financeiro/app/utils/store_utils.dart';
 import 'package:mobx/mobx.dart';
+
+import 'components/painel_saldo/painel_saldo_controller.dart';
 
 part 'movimentacoes_controller.g.dart';
 
