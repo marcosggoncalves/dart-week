@@ -25,7 +25,7 @@ class UsuarioController extends ResourceController{
         'message': 'Usuário cadastrado com sucesso'
       });
     }catch(e){
-      return  Response.serverError(body:{'message': 'Erro ao cadastrar usuário'});
+      return  Response.serverError(body:{'message': 'Não foi possivel efetuar o cadastro, verifique usuário ou senha'});
     }
   }
 }

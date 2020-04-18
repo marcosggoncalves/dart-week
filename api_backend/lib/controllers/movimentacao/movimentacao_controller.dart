@@ -15,7 +15,7 @@ class MovimentacaoController extends ResourceController {
   @Operation.get('anoMes')
   Future<Response> buscarTodasMovimentacoes(){
     final anoMes = request.path.variables['anoMes'];
-    final DateFormat  dateformat = DateFormat('yyyy_MM_DD');
+    final DateFormat  dateformat = DateFormat('yyyy-MM-dd');
     final UsuarioModel usuario =  request.attachments['user'] as UsuarioModel;
 
     return 

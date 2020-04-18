@@ -8,10 +8,12 @@ class ControlejatextFormField extends TextFormField{
     bool obscureText,
     double borderRadius,
     double fontSize,
-    double padding,
+    EdgeInsets padding,
     TextEditingController controller,
-    IconData icon,
+    IconData icon, 
+    void Function(String descricao) onChanged,
   }) : super(
+    controller: controller,
     onChanged: onChange,
     validator: validator,
     obscureText: obscureText ?? false,
@@ -21,7 +23,7 @@ class ControlejatextFormField extends TextFormField{
       labelText: label,
       labelStyle: TextStyle(fontSize: fontSize  ?? 20),
       border: OutlineInputBorder(
-       borderRadius: BorderRadius.circular(borderRadius ?? 15),
+       borderRadius: BorderRadius.circular(borderRadius ?? 10),
       )
     ),
   );

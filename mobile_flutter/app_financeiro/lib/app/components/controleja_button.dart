@@ -24,7 +24,7 @@ class ControlejaButton extends RawMaterialButton{
       ),
     ),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15)
+      borderRadius: BorderRadius.circular(10)
     ),
     fillColor: primaryColor ?? ThemeUtils.primaryColor,
     highlightColor: highlightColor ?? ThemeUtils.primaryColor

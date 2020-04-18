@@ -1,5 +1,11 @@
-username: "postgres"
-password: "root"
-host: "localhost"
+username: "uzjljzaoandyuf"
+password: "233257591f9c8d8fbf3666bcf725fad84881bf4c66bf21b609b977f0eb39756e"
+host: "ec2-52-87-58-157.compute-1.amazonaws.com"
 port: 5432
-databaseName: "dart_week"
+databaseName: "dbhk19br7j66lf"
+
+# username: "postgres"
+# password: "root"
+# host: "localhost"
+# port: 5432
+# databaseName: "dart_week

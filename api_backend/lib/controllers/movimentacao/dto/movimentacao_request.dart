@@ -23,7 +23,8 @@ class SalvarMovimentacaoRequest extends Serializable{
     descricao = object['descricao'] as String;
     final dataMovimentoStr = object['dataMovimentacao'] as String;
     dataMovimentacao = dataMovimentoStr != null ? DateTime.parse(dataMovimentoStr) : null;
-    valor = object['valor'] as double;
+
+    valor = object['valor'].toDouble() as double;
   }
 
   Map<String,String> validate(){

@@ -34,6 +34,11 @@ class ApiBackendChannel extends ApplicationChannel {
   Controller get entryPoint {
     final router = Router();
 
+    router.route('/').linkFunction((request) async {
+      final html = File("web/login.html").readAsStringSync();
+      return Response.ok(html)..contentType = ContentType.HTML;
+    });
+
     UsuarioRouter.configurar(router, context);
     CategoriaRouter.configurar(router, context);
     MovimentacaoRouter.configurar(router, context);

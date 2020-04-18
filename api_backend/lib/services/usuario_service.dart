@@ -13,7 +13,7 @@ class UsuarioService{
   final ManagedContext context;
   final UsuarioRepository usuarioRepository;
 
-  Future<String> login(LoginRequest request) async {
+  Future<dynamic> login(LoginRequest request) async {
 
     final String login = request.login;
     final String senha = request.senha;
@@ -23,9 +23,17 @@ class UsuarioService{
     final  usuario = await usuarioRepository.recuperarUsuarioPorLoginESenha(login, senhaCriptografada);
     
     if(usuario != null){
-      return JwtUtils.gerarTokenJwt(usuario);
+      return {
+        'autenticado': true,
+        'usuario': 'Seja bem vindo ${usuario.login}, Ao sistema financeiro controle já !',
+        'token': JwtUtils.gerarTokenJwt(usuario)
+      };
     }
-    return null;
+    return {
+      'autenticado': true,
+      'token': null,
+      'usuario': null
+    };
   }
 
   Future<void> salvarUsuario(CadastrarUsuarioRequest request) async {
@@ -34,5 +42,9 @@ class UsuarioService{
 
   Future<UsuarioModel> buscarPorId(int id) async{
     return await usuarioRepository.buscarPorId(id); 
+  }
+
+   Future<UsuarioModel> buscarUsuario(String usuario) async{
+    return await usuarioRepository.buscarUsuario(usuario); 
   }
 }

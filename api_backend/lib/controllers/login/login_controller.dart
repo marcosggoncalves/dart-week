@@ -23,9 +23,6 @@ class LoginController extends ResourceController{
 
     final token = await usuarioService.login(request);
     
-    return Response.ok({
-      'autenticado':token != null, 
-      'token': token
-    });
+    return Response.ok(token);
   }
 }

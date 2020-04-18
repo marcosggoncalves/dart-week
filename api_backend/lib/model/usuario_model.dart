@@ -19,3 +19,4 @@ class _UsuarioModel{
 
 
 // aqueduct db generate -- executar model
+// aqueduct db upgrade -- executar migrations no postgres

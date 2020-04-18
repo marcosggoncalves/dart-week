@@ -1,8 +1,16 @@
+import 'package:app_financeiro/app/core/store_state.dart';
+import 'package:app_financeiro/app/mixins/loader.dart';
+import 'package:app_financeiro/app/modules/movimentacoes/cadastrar_movimentacao/cadastrar_movimentacao_controller.dart';
+import 'package:app_financeiro/app/modules/movimentacoes/cadastrar_movimentacao/cadastrar_movimentacao_widget.dart';
 import 'package:app_financeiro/app/modules/movimentacoes/components/movimentacao_item.dart';
 import 'package:app_financeiro/app/modules/movimentacoes/painel_saldo/painel_saldo_widget.dart';
+import 'package:app_financeiro/app/repository/usuario.dart';
 import 'package:app_financeiro/app/utils/size_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:get/get.dart';
+import 'package:mobx/mobx.dart';
 import 'movimentacoes_controller.dart';
 
 class MovimentacoesPage extends StatefulWidget {
@@ -15,8 +23,54 @@ class MovimentacoesPage extends StatefulWidget {
 }
 
 class _MovimentacoesPageState
-    extends ModularState<MovimentacoesPage, MovimentacoesController> {
+    extends ModularState<MovimentacoesPage, MovimentacoesController> with LoaderMixin {
   //use 'controller' variable to access controlle
+
+  List<ReactionDisposer> disposers;
+  CadastrarMovimentacaoController cadastrarController = Modular.get<CadastrarMovimentacaoController>();
+
+  @override
+  void initState(){
+    super.initState();
+    disposers ??= [
+      reaction((_) => controller.painelSaldoController.data,(_) => controller.buscarMovimentacoes()),
+      reaction((_) => cadastrarController.salvarMovimentacaoStatus, (_) {
+        switch (_) {
+          case StoreState.loading:
+            showLoader();
+            break;
+          case StoreState.error:
+            hideLoader();
+            Get.snackbar('Erro', 'Erro ao salvar movimentação');
+            break;
+          case StoreState.loaded:
+            hideLoader();
+            Get.back();
+            controller.buscarMovimentacoes();
+            controller.painelSaldoController.buscarTotalDoMes();
+            break;
+        }
+       }),
+        reaction((_) => cadastrarController.categoriasStatus, (categoriaStatus) {
+          switch(categoriaStatus) {
+            case StoreState.loading:
+              showLoader();
+              break;
+            case StoreState.loaded:
+              hideLoader();
+              _showInsertModal();
+              break;
+          }
+        })
+    ];  
+    controller.buscarMovimentacoes();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    disposers.forEach((d) => d());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +81,18 @@ class _MovimentacoesPageState
       actions: <Widget>[
         PopupMenuButton<String>(
           icon: Icon(Icons.add),
+          onSelected: (item){
+           cadastrarController.buscarCategorias(item);
+            _showInsertModal();
+          },
           itemBuilder: (_){
             return [
               PopupMenuItem<String>(
-                value : 'Receita',
+                value : 'receita',
                 child: Text('Receita')
               ),
               PopupMenuItem<String>(
-                value : 'Despesas',
+                value : 'despesa',
                 child: Text('Despesas')
               )
             ];
@@ -45,7 +103,10 @@ class _MovimentacoesPageState
             Icons.exit_to_app,
             color: Colors.white
           ),
-          onPressed: (){},
+          onPressed: () {
+            Modular.get<UsuarioRepository>().logout();
+            Get.offAllNamed('/login');
+          },  
         )
       ],
     );
@@ -56,8 +117,29 @@ class _MovimentacoesPageState
         height: SizeUtils.heightScreen,
         child: Stack(
           children: <Widget>[
+            Observer(builder: (_){
+              switch (controller.movimentacoesState) {
+                case StoreState.initial:
+                case StoreState.loading:
+                  return  Container(
+                    height: SizeUtils.heightScreen,
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                case StoreState.loaded:
+                  return _makeContent();
+                case StoreState.error:
+                  Get.snackbar('Erro ao buscar dados', controller.errorMessage);
+                  return Container();
+              }
+            }),
             _makeContent(),
-            PainelSaldoWidget(appBarHeight: appBar.preferredSize.height)
+            PainelSaldoWidget(
+              appBarHeight: appBar.preferredSize.height,
+            )
           ],
         )
       )
@@ -69,12 +151,33 @@ class _MovimentacoesPageState
         Expanded(
             child: 
             ListView.separated(
-              itemBuilder: (_, index) => MovimentacaoItem(),
+              itemBuilder: (_, index) => MovimentacaoItem(item: controller.movimentacoes[index]),
               separatorBuilder: (_, index) => Divider(color: Colors.black38), 
-              itemCount: 10
+              itemCount: controller.movimentacoes?.length ?? 0
             ) 
           )
       ] ,
     );
+  }
+
+  _showInsertModal() { 
+    cadastrarController.resetForm();
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        title: Text('Adicionar'),
+        content: CadastrarMovimentacaoWidget(),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () => cadastrarController.salvarMovimento(),
+            child: const Text("SALVAR"),
+          ),
+          FlatButton(
+            onPressed: () => Get.back(result: false),
+            child: const Text("CANCELAR"),
+          ),
+        ],
+      )
+      );
   }
 }

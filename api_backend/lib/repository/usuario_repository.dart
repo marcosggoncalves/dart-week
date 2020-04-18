@@ -24,4 +24,9 @@ class UsuarioRepository{
     final query = Query<UsuarioModel>(context)..where((usuario) => usuario.id).equalTo(id);
     return  await query.fetchOne();
   }
+
+  Future<UsuarioModel> buscarUsuario(String nome) async{
+    final query = Query<UsuarioModel>(context)..where((usuario) => usuario.login).equalTo(nome);
+    return  await query.fetchOne();
+  }
 }

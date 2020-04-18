@@ -21,8 +21,8 @@ class MovimentacaoRepository{
       ..join(object: (movimentacao) => movimentacao.categoria)
       ..where((movimentacao) => movimentacao.usuario.id).equalTo(usuario.id)
       ..where((movimentacao) => movimentacao.dataMovimentacao).between(inicio, fim)
-      ..sortBy((movimentacao) =>  movimentacao.dataMovimentacao, QuerySortOrder.descending)
-      ..sortBy((movimentacao) =>  movimentacao.dataMovimentacao, QuerySortOrder.descending);
+      ..sortBy((movimentacao) =>  movimentacao.dataMovimentacao, QuerySortOrder.ascending)
+      ..sortBy((movimentacao) =>  movimentacao.dataMovimentacao, QuerySortOrder.ascending);
 
       return query.fetch();
   }

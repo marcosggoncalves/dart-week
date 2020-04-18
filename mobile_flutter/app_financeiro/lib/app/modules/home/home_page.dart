@@ -1,3 +1,5 @@
+import 'package:app_financeiro/app/repository/usuario.dart';
+import 'package:app_financeiro/app/utils/size_utils.dart';
 import 'package:app_financeiro/app/utils/theme_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,15 +21,36 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Widget build(BuildContext context) {
 
     ThemeUtils.init(context);
-    Future.delayed(Duration.zero, () => Get.offAllNamed('/login'));
+    Future.delayed(Duration.zero, () async{
+     final status = await Modular.get<UsuarioRepository>().checkLogged();
+     final future = new Future.delayed(const Duration(milliseconds: 200));
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
-      ),
+      future.asStream()
+      .listen((res) {
+          if(status){
+            Get.offAllNamed('/movimentacoes');
+          }else{
+            Get.offAllNamed('/login');
+          }
+      });
+    });
+
+     return Scaffold(
+      body: Container(
+        color:ThemeUtils.primaryColor,
+        width: SizeUtils.widthScreen,
+        height:SizeUtils.heightScreen,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(
+              top: 50,
+              bottom: 50,
+              child: Image.asset('assets/images/logo.png'),
+            ),
+          ],
+        )
+      )
     );
   }
 }
