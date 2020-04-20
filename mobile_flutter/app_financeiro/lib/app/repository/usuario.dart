@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UsuarioRepository{
 
     Future<bool> checkLogged() async{
-      var token =  await this.getToken();
+      final String token = await this.getToken();
       return token != null;
     }
 

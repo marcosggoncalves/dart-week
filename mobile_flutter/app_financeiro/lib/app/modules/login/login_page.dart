@@ -28,6 +28,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> with  Loa
   void initState(){
     super.initState();
 
+    WidgetsBinding.instance.addPostFrameCallback((_) => controller.verificaLogado());
+
     _disposer??=[
       reaction((_)=> controller.state, (StoreState state){
         if(state == StoreState.loading){

@@ -1,9 +1,10 @@
 import 'package:app_financeiro/app/app_controller.dart';
+import 'package:app_financeiro/app/modules/login/login_module.dart';
+import 'package:app_financeiro/app/modules/movimentacoes/movimentacoes_module.dart';
 import 'package:app_financeiro/app/repository/usuario.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:app_financeiro/app/app_widget.dart';
-import 'package:app_financeiro/app/modules/home/home_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -14,7 +15,9 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-    Router(Modular.initialRoute, module: HomeModule())
+    Router(Modular.initialRoute, module: LoginModule()),
+    Router('/login', module: LoginModule()),
+    Router('/movimentacoes', module: MovimentacoesModule())
   ];
 
   @override

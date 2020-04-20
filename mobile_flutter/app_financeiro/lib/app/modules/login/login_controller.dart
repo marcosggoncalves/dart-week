@@ -1,13 +1,15 @@
 import 'package:app_financeiro/app/core/store_state.dart';
+import 'package:app_financeiro/app/mixins/loader.dart';
 import 'package:app_financeiro/app/repository/usuario.dart';
 import 'package:app_financeiro/app/utils/store_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mobx/mobx.dart';
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
 
-abstract class _LoginControllerBase with Store {
+abstract class _LoginControllerBase with Store, LoaderMixin {
 
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   final UsuarioRepository usuarioRepository;
@@ -51,5 +53,14 @@ abstract class _LoginControllerBase with Store {
         errorMessage = 'Erro ao realizar login';
       }
     }
+  }
+
+  Future<void> verificaLogado() async {
+    showLoader();
+    if (await usuarioRepository.checkLogged()) {
+      hideLoader();
+      return Get.offAllNamed('/movimentacoes');
+    }
+    return  hideLoader();
   }
 }
