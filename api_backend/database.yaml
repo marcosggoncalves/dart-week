@@ -1,8 +1,8 @@
-username: "uzjljzaoandyuf"
-password: "233257591f9c8d8fbf3666bcf725fad84881bf4c66bf21b609b977f0eb39756e"
-host: "ec2-52-87-58-157.compute-1.amazonaws.com"
+username: "enzutjqdtdsqfo"
+password: "8990b0cfebd7a6e8460193e4753775824800da9f73c8d5e8d47cccf9dfd6ca76"
+host: "ec2-54-90-13-87.compute-1.amazonaws.com"
 port: 5432
-databaseName: "dbhk19br7j66lf"
+databaseName: "de7libtugc8ad0"
 
 # username: "postgres"
 # password: "root"
