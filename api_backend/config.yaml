@@ -1,9 +1,9 @@
 database:
- username: uzjljzaoandyuf
- password: 233257591f9c8d8fbf3666bcf725fad84881bf4c66bf21b609b977f0eb39756e
- host: ec2-52-87-58-157.compute-1.amazonaws.com
+ username: hfgyisqglcifkc
+ password: e1195ff10e9e7ae7c3022130a43ee5cc78f9285b907734e2eb01b53386569190
+ host: ec2-34-233-214-228.compute-1.amazonaws.com
  port: 5432
- databaseName: dbhk19br7j66lf
+ databaseName: d2u3vm4s445a6b
 
 # database:
 #  username: postgres
